@@ -53,6 +53,11 @@ export default function () {
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
+      <footer>
+        Desenvolvido por Alexandro.t.o<br/>
+        Direito de imagem para Netflix<br/>
+        Dados pegos do site themoviedb.org
+      </footer>
     </div>
   );
 }
