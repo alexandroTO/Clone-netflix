@@ -28,24 +28,24 @@ export default function () {
     };
     loadAll();
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     const scrollListener = () => {
-      if(window.scrollY > 10){
+      if (window.scrollY > 10) {
         setBlackHeader(true);
-      }else{
+      } else {
         setBlackHeader(false);
       }
-    }
-    window.addEventListener('scroll',scrollListener)
+    };
+    window.addEventListener("scroll", scrollListener);
 
     return () => {
-      window.removeEventListener('scroll',scrollListener)
-    }
-  },[])
+      window.removeEventListener("scroll", scrollListener);
+    };
+  }, []);
 
   return (
     <div className="page">
-      <Header black={blackHeader}/>
+      <Header black={blackHeader} />
       {featureData && <FeatureMovie item={featureData} />}
 
       <section className="lists">
@@ -54,10 +54,20 @@ export default function () {
         ))}
       </section>
       <footer>
-        Desenvolvido por Alexandro.t.o<br/>
-        Direito de imagem para Netflix<br/>
+        Desenvolvido por Alexandro.t.o
+        <br />
+        Direito de imagem para Netflix
+        <br />
         Dados pegos do site themoviedb.org
       </footer>
+      {movieList.length <= 0 && (
+        <div className="loading">
+          <img
+            src="https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2560%2Cc_limit/Netflix_LoadTime.gif"
+            alt="carregando"
+          />
+        </div>
+      )}
     </div>
   );
 }
