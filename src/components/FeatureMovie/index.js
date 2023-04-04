@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FeatureMovie.css";
+import ModalMovie from "../ModalMovie";
 
 export default ({ item }) => {
+  const [isOpen, setIsOpen] = useState(false);
   let description = item.overview;
-    let firstDate = new Date(item.first_air_date)
-    let genres = []
-    for (let i in item.genres) {
-        genres.push(item.genres[i].name)
-    }
-    if(description.length > 150){
-      description = description.substring(0, 200)+'...'
-    }
+  let firstDate = new Date(item.first_air_date);
+  let genres = [];
+  for (let i in item.genres) {
+    genres.push(item.genres[i].name);
+  }
+  if (description.length > 150) {
+    description = description.substring(0, 200) + "...";
+  }
   return (
     <section
       className="featured"
@@ -24,7 +26,9 @@ export default ({ item }) => {
         <div className="featured--horizontal">
           <div className="featured--name">{item.original_name}</div>
           <div className="featured--info">
-            <div className="featured--points">{item.vote_average.toFixed(2)} pontos</div>
+            <div className="featured--points">
+              {item.vote_average.toFixed(2)} pontos
+            </div>
             <div className="featured--year">{firstDate.getFullYear()}</div>
             <div className="featured--sesons">
               {item.number_of_seasons} temporada
@@ -33,12 +37,26 @@ export default ({ item }) => {
           </div>
           <div className="featured--description">{description}</div>
           <div className="featured--buttons">
-            <a href={`/whatch/${item.id}`} className="featured--watchbutton">►  Assistir</a>
-            <a href={`/list/add/${item.id}`} className="featured--mylist">+ Minha Lista</a>
+            <a
+              href="#"
+              onClick={() => {
+                setIsOpen(true);
+              }}
+              className="featured--watchbutton"
+            >
+              ► Assistir
+            </a>
+            <a href={`/list/add/${item.id}`} className="featured--mylist">
+              + Minha Lista
+            </a>
           </div>
-          <div className="featured--genres"><strong>Gêneros: </strong>{genres.join(', ')}</div>
+          <div className="featured--genres">
+            <strong>Gêneros: </strong>
+            {genres.join(", ")}
+          </div>
         </div>
       </div>
+      {isOpen && <ModalMovie open={isOpen} idMovie={item.id} />}
     </section>
   );
 };
