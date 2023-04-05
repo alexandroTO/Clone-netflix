@@ -56,7 +56,7 @@ export default ({ item }) => {
           </div>
         </div>
       </div>
-      {isOpen && <ModalMovie open={isOpen} idMovie={item.id} />}
+      {isOpen && <ModalMovie open={isOpen} movie={item} />}
     </section>
   );
 };

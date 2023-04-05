@@ -4,18 +4,14 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import Tmdb from "../../Tmdb";
 
-export default ({ open, idMovie }) => {
-  const [movieData, setMovieData] = useState(null)  
+export default ({ open, movie }) => {
+    
   const [isOpen, setIsOpen] = useState(open);
   
-  const load = async () => {
-    let info = await Tmdb.getMovieInfo(idMovie, "tv");
-    setMovieData(info);
-    
-}
+  
 useEffect(()=>{
-    load();
-    console.log(movieData)
+   
+    console.log(movie)
 },[])
   
   function fecharModal() {
@@ -36,7 +32,7 @@ useEffect(()=>{
           },
         }}
       >
-        <h1 style={{  marginTop: "45px" }}>{idMovie}</h1>
+        <h1 style={{  marginTop: "45px" }}>{movie.id}</h1>
       </Modal>
     </div>
   );
