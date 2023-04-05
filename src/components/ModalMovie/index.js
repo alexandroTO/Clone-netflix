@@ -34,7 +34,7 @@ export default ({ open, movie }) => {
           content: {
             margin: 0,
             padding: 0,
-            backgroundColor: "#111",
+            backgroundColor: "#000",
             marginTop: "35px",
           },
         }}
@@ -43,19 +43,20 @@ export default ({ open, movie }) => {
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             width="100%"
-            height="670px"
+            height="650px"
             playing={true}
+            onEnded={() => setTreiler("")}
           />
         ) : (
           <img
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt=""
-            style={{ width: "100%", height: "700px" }}
+            style={{ width: "100%", height: "650px" }}
           />
         )}
         <div className="Modal--vertical"></div>
         <div className="Modal--content">
-          <p>teste</p>
+          <h1 className="Modal--name">{movie.original_name}</h1>
         </div>
       </Modal>
     </div>

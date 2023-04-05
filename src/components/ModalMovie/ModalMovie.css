@@ -2,10 +2,10 @@
 .Modal--vertical {
     position: absolute;
     width: 100%;
-    height: 760px;
+    height: 830px;
     top: 0;
     left: 0;
-    background: linear-gradient(to top, #111 10%, transparent 90%);
+    background: linear-gradient(to top, #000 10%, transparent 90%);
     z-index: 999;
 }
 .Modal--content{
@@ -14,3 +14,8 @@
     z-index: 999;
 }
   
+.Modal--name{
+    font-size: 60px;
+    padding-left: 25px;
+    margin-top:-25px;
+}
