@@ -11,7 +11,7 @@ export default ({ open, movie }) => {
   const [trailer, setTreiler] = useState("");
   const video = async () => {
     movie.videos.results.map((item) => {
-      if (item.type == "Trailer" || item.type == "Teaser") {
+      if (item.type === "Trailer" || item.type === "Teaser") {
         setTreiler(item.key);
       }
     });
@@ -39,24 +39,27 @@ export default ({ open, movie }) => {
           },
         }}
       >
-        {trailer ? (
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
-            width="100%"
-            height="650px"
-            playing={true}
-            onEnded={() => setTreiler("")}
-          />
-        ) : (
-          <img
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            alt=""
-            style={{ width: "100%", height: "650px" }}
-          />
-        )}
-        <div className="Modal--vertical"></div>
+        <div className="Modal--movie">
+          {trailer ? (
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${trailer}`}
+              width="inherit"
+              height="inherit"
+              playing={true}
+              onEnded={() => setTreiler("")}
+            />
+          ) : (
+            <img
+              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+              alt=""
+              style={{ width: "inherit", height: "inherit" }}
+            />
+          )}
+         <div className="Modal--vertical"></div>
+        </div>
         <div className="Modal--content">
           <h1 className="Modal--name">{movie.original_name}</h1>
+          <p className="Modal--description">{movie.overview}</p>
         </div>
       </Modal>
     </div>
